@@ -13,44 +13,44 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        username: {
-          label: "Username:",
-          type: "text",
-          placeholder: "your-username",
-        },
-        password: {
-          label: "Password:",
-          type: "password",
-          placeholder: "your-password",
-        },
-      },
-      async authorize(credentials) {
-        // This is where you need to retrieve user data
-        // to verify with credentials
-        // Docs: https://next-auth.js.org/configuration/providers/credentials
-        const user = {
-          id: "42",
-          username: "meneses.marvin.n@gmail.com",
-          name: "Marvin Meneses",
-          email: "meneses.marvin.n@gmail.com",
-          password: "nextauth",
-          image:
-            "https://lh3.googleusercontent.com/a/AAcHTtfhD6iRNNO0Us2ZFfS0u8m9APlEpEQ4IctxRLyB2PLi=s96-c",
-        };
+    // CredentialsProvider({
+    //   name: "Credentials",
+    //   credentials: {
+    //     username: {
+    //       label: "Username:",
+    //       type: "text",
+    //       placeholder: "your-username",
+    //     },
+    //     password: {
+    //       label: "Password:",
+    //       type: "password",
+    //       placeholder: "your-password",
+    //     },
+    //   },
+    //   async authorize(credentials) {
+    //     // This is where you need to retrieve user data
+    //     // to verify with credentials
+    //     // Docs: https://next-auth.js.org/configuration/providers/credentials
+    //     const user = {
+    //       id: "42",
+    //       username: "meneses.marvin.n@gmail.com",
+    //       name: "Marvin Meneses",
+    //       email: "meneses.marvin.n@gmail.com",
+    //       password: "nextauth",
+    //       image:
+    //         "https://lh3.googleusercontent.com/a/AAcHTtfhD6iRNNO0Us2ZFfS0u8m9APlEpEQ4IctxRLyB2PLi=s96-c",
+    //     };
 
-        if (
-          credentials?.username === user.username &&
-          credentials?.password === user.password
-        ) {
-          return user;
-        } else {
-          return null;
-        }
-      },
-    }),
+    //     if (
+    //       credentials?.username === user.username &&
+    //       credentials?.password === user.password
+    //     ) {
+    //       return user;
+    //     } else {
+    //       return null;
+    //     }
+    //   },
+    // }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: {
