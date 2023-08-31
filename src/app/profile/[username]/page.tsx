@@ -4,10 +4,28 @@ import { articleProps } from "@/model/seekAndShare.model";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-async function getData(username: string) {
-  const res = await fetch(`http://localhost:3000/api/profile/${username}`, {
-    cache: "no-store",
-  });
+async function getContent(username: string) {
+  const res = await fetch(
+    `http://localhost:3000/api/profile/user-content/${username}`,
+    {
+      cache: "no-store",
+    },
+  );
+
+  if (!res.ok) {
+    return notFound();
+  }
+
+  return res.json();
+}
+
+async function getUser(email: string) {
+  const res = await fetch(
+    `http://localhost:3000/api/profile/user-details/${email}`,
+    {
+      cache: "no-store",
+    },
+  );
 
   if (!res.ok) {
     return notFound();
@@ -21,29 +39,28 @@ export async function generateMetadata({
 }: {
   params: { username: string };
 }) {
-  const post = await getData(params.username);
+  const user = await getUser(`${params.username}@gmail.com`);
   return {
-    title: `${post[0]?.created_by} - Seek&Share`,
+    title: `${user?.name} - Seek&Share`,
     // description: post[0]?.content,
   };
 }
 
 const Profile = async ({ params }: { params: { username: string } }) => {
-  const data = await getData(params.username);
+  const data = await getContent(params.username);
+  const user = await getUser(`${params.username}@gmail.com`);
 
   return (
     <div className="mx-auto mt-20 max-w-3xl px-4">
       <div className="flex flex-col items-center gap-4 border-b-2 border-gray-100 pb-6 md:gap-6 md:pb-8">
         <Image
-          src={`${data[0]?.profileImage}`}
+          src={`${user?.image}`}
           alt="image"
           className="h-20 w-20 rounded-full md:h-24 md:w-24"
           width={100}
           height={100}
         />
-        <h1 className="text-4xl font-semibold md:text-5xl">
-          {data[0]?.created_by}
-        </h1>
+        <h1 className="text-4xl font-semibold md:text-5xl">{user?.name}</h1>
       </div>
       <div className="my-14 flex flex-col gap-12 md:my-20">
         {data.map((item: articleProps) => (
