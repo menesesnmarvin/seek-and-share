@@ -32,11 +32,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex flex-row justify-between">
-      <Link href="/" className="w-72">
-        <Image src={Logo} alt="seek&share" />
+    <nav className="m-5 mx-auto mt-8 flex max-w-7xl flex-row justify-between px-4">
+      <Link href="/" className="w-72 text-3xl font-semibold">
+        Seek & Share
+        {/* <Image src={Logo} alt="seek&share" /> */}
       </Link>
-      <div className="flex items-center gap-12">
+      <div className="flex items-center gap-6 md:gap-12">
         <Link href="/write" className="flex gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -82,13 +83,15 @@ const Navbar = () => {
                   alt="User Avatar"
                   width={40}
                   height={40}
-                  className="rounded-full"
+                  className="h-10 w-10 rounded-full"
                 />
-                <span className="text-gray-700">{data?.user?.name}</span>
+                <span className="hidden text-gray-700 md:inline">
+                  {data?.user?.name}
+                </span>
               </button>
             ) : null}
             {isOpen && (
-              <div className="absolute right-0 mt-2 w-48 rounded-lg border border-gray-200 bg-white shadow-md">
+              <div className="absolute right-0 mt-2 w-36 rounded-lg border border-gray-200 bg-white shadow-md md:w-48">
                 <ul className="py-2">
                   <Link
                     href={`/profile/${extractUsernameFromEmail(

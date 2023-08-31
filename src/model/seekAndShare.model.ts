@@ -8,6 +8,7 @@ export type articleProps = {
   created_by: string;
   user_name: string;
   createdAt: Date;
+  borderBottom: string;
 };
 
 export type mediumEditorProps = {

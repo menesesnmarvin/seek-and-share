@@ -19,9 +19,10 @@ const ArticleTemplate = ({
   created_by,
   user_name,
   createdAt,
+  borderBottom,
 }: articleProps) => {
   return (
-    <article className="flex flex-col gap-2 border-b-2 border-gray-100 pb-4">
+    <article className="flex flex-col gap-2">
       <Link href={`/profile/${user_name}`} className="flex items-center gap-2">
         <Image
           src={`${profileImage}`}
@@ -37,14 +38,15 @@ const ArticleTemplate = ({
         </h1>
       </Link>
       <Link href={`/blog/${_id}`} className="mt-2">
-        <h1 className="text-2xl font-bold">{title}</h1>
+        <h1 className="text-xl font-bold md:text-2xl">{title}</h1>
         <div
-          className="line-clamp-3 text-base"
+          className="line-clamp-2 text-sm md:line-clamp-3 md:text-base"
           dangerouslySetInnerHTML={{
             __html: content,
           }}
         ></div>
       </Link>
+      <div className={`mt-4 h-0.5 w-full ${borderBottom}`}></div>
     </article>
   );
 };

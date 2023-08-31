@@ -36,8 +36,8 @@ const Blog = async ({ params }: { params: { id: string } }) => {
   const data = await getData(params.id);
 
   return (
-    <div className="mx-auto mt-20 max-w-3xl">
-      <h1 className="text-5xl font-extrabold">{data.title}</h1>
+    <div className="mx-auto mt-20 max-w-3xl px-4 pb-4">
+      <h1 className="text-4xl font-extrabold md:text-5xl">{data.title}</h1>
       <Link
         href={`/profile/${data.user_name}`}
         className="my-8 flex items-center gap-2"
@@ -45,19 +45,21 @@ const Blog = async ({ params }: { params: { id: string } }) => {
         <Image
           src={`${data.profileImage}`}
           alt="image"
-          className="rounded-full"
+          className="h-8 w-8 rounded-full md:h-10 md:w-10"
           width={40}
           height={40}
         />
-        <h1 className="text-sm hover:underline">{data.created_by}</h1>
-        <h1 className="text-sm text-gray-500">{`- ${timeAgo.format(
+        <h1 className="text-sm hover:underline md:text-base">
+          {data.created_by}
+        </h1>
+        <h1 className="text-sm text-gray-500 md:text-base">{`- ${timeAgo.format(
           new Date(data.createdAt),
         )}`}</h1>
       </Link>
       <div className="flex flex-col gap-14">
         {/* <p className=" text-xl leading-8 tracking-tight">{data.content}</p> */}
         <div
-          className="text-xl leading-8 tracking-tight"
+          className="text-lg leading-7 tracking-tight md:text-xl md:leading-8"
           dangerouslySetInnerHTML={{
             __html: data.content,
           }}

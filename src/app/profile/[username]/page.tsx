@@ -32,18 +32,20 @@ const Profile = async ({ params }: { params: { username: string } }) => {
   const data = await getData(params.username);
 
   return (
-    <div className="mx-auto mt-20 max-w-3xl">
-      <div className="my-8 flex flex-col items-center gap-6 border-b-2 border-gray-100 pb-8">
+    <div className="mx-auto mt-20 max-w-3xl px-4">
+      <div className="flex flex-col items-center gap-4 border-b-2 border-gray-100 pb-6 md:gap-6 md:pb-8">
         <Image
           src={`${data[0]?.profileImage}`}
           alt="image"
-          className="rounded-full"
+          className="h-20 w-20 rounded-full md:h-24 md:w-24"
           width={100}
           height={100}
         />
-        <h1 className="text-5xl font-semibold">{data[0]?.created_by}</h1>
+        <h1 className="text-4xl font-semibold md:text-5xl">
+          {data[0]?.created_by}
+        </h1>
       </div>
-      <div className="my-20 flex flex-col gap-12">
+      <div className="my-14 flex flex-col gap-12 md:my-20">
         {data.map((item: articleProps) => (
           <div key={item._id}>
             <ArticleTemplate
@@ -54,6 +56,7 @@ const Profile = async ({ params }: { params: { username: string } }) => {
               created_by={item.created_by}
               user_name={item.user_name}
               createdAt={item?.createdAt}
+              borderBottom="bg-gray-100"
             />
             <ArticleFooter id={item._id} username={item.user_name} />
           </div>
