@@ -14,7 +14,7 @@ export const GET = async () => {
   }
 };
 
-export const POST = async (request: { json: () => any }) => {
+export const POST = async (request: any) => {
   const body = await request.json();
 
   const newPost = new PostModel(body);
