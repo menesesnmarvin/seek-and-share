@@ -1,5 +1,5 @@
-import ArticleFooter from "@/components/ArticleFooter";
-import ArticleTemplate from "@/components/ArticleTemplate";
+import ContentActions from "@/components/ContentActions";
+import Content from "@/components/Content";
 import { articleProps } from "@/model/seekAndShare.model";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -65,7 +65,7 @@ const Profile = async ({ params }: { params: { username: string } }) => {
       <div className="my-14 flex flex-col gap-12 md:my-20">
         {data.map((item: articleProps) => (
           <div key={item._id}>
-            <ArticleTemplate
+            <Content
               _id={item._id}
               title={item.title}
               content={item.content}
@@ -75,7 +75,7 @@ const Profile = async ({ params }: { params: { username: string } }) => {
               createdAt={item?.createdAt}
               borderBottom="bg-gray-100"
             />
-            <ArticleFooter id={item._id} username={item.user_name} />
+            <ContentActions id={item._id} username={item.user_name} />
           </div>
         ))}
       </div>

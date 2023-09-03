@@ -1,4 +1,4 @@
-import ArticleTemplate from "@/components/ArticleTemplate";
+import Content from "@/components/Content";
 import LandingPage from "@/components/LandingPage";
 import { articleProps } from "@/model/seekAndShare.model";
 
@@ -19,10 +19,10 @@ export default async function Home() {
   return (
     <>
       <LandingPage />
-      <div className="-mt-14 bg-[#F1F1F1] px-4">
-        <main className="mx-auto flex max-w-3xl flex-col gap-12 pt-60 md:pt-80">
+      <div className="-mt-14 h-screen bg-[#F1F1F1] px-4">
+        <main className="mx-auto flex max-w-3xl flex-col gap-12 pt-64 md:pt-80">
           {data.map((item: articleProps) => (
-            <ArticleTemplate
+            <Content
               key={item._id}
               _id={item._id}
               title={item.title}

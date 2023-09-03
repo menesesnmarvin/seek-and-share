@@ -2,7 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb";
-import type { NextAuthOptions } from "next-auth";
+import { getServerSession, type NextAuthOptions } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
@@ -58,3 +58,5 @@ export const authOptions: NextAuthOptions = {
     // maxAge: 60,
   },
 };
+
+export const getAuthSession = () => getServerSession(authOptions);

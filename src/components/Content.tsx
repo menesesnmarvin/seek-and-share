@@ -11,7 +11,7 @@ TimeAgo.addDefaultLocale(en);
 // Create formatter (English).
 const timeAgo = new TimeAgo("en-US");
 
-const ArticleTemplate = ({
+const Content = ({
   _id,
   title,
   content,
@@ -38,9 +38,9 @@ const ArticleTemplate = ({
         </h1>
       </Link>
       <Link href={`/blog/${_id}`} className="mt-2">
-        <h1 className="text-xl font-bold md:text-2xl">{title}</h1>
+        <h1 className="mb-3 text-xl font-bold md:text-2xl">{title}</h1>
         <div
-          className="line-clamp-2 text-sm md:line-clamp-3 md:text-base"
+          className="line-clamp-4 text-sm md:text-base"
           dangerouslySetInnerHTML={{
             __html: content,
           }}
@@ -51,4 +51,4 @@ const ArticleTemplate = ({
   );
 };
 
-export default ArticleTemplate;
+export default Content;

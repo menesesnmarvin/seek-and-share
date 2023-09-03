@@ -6,7 +6,7 @@ import extractUsernameFromEmail from "@/lib/extractUsernameFromEmail";
 import { deleteProps } from "@/model/seekAndShare.model";
 import LoadingScreen from "./Loading";
 
-const ArticleFooter = ({ id, username }: deleteProps) => {
+const ContentActions = ({ id, username }: deleteProps) => {
   const router = useRouter();
   const { data } = useSession();
   const [isLoading, setisLoading] = useState<boolean>(false);
@@ -54,4 +54,4 @@ const ArticleFooter = ({ id, username }: deleteProps) => {
   );
 };
 
-export default ArticleFooter;
+export default ContentActions;

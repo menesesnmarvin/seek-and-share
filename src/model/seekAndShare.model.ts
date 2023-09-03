@@ -21,3 +21,11 @@ export type deleteProps = {
   id: string;
   username: string;
 };
+
+export type userSession = {
+  userDetails?: {
+    email?: string | null;
+    image?: string | null;
+    name?: string | null;
+  };
+};
