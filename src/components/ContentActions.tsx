@@ -19,9 +19,7 @@ const ContentActions = ({ id, username }: deleteProps) => {
       });
       // mutate();
       router.refresh();
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   if (extractUsernameFromEmail(data?.user?.email) !== username) {

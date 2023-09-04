@@ -3,7 +3,7 @@ import LandingPage from "@/components/LandingPage";
 import { articleProps } from "@/model/seekAndShare.model";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/posts", {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
     cache: "no-store",
   });
 

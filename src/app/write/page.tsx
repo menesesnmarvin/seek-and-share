@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import extractUsernameFromEmail from "@/lib/extractUsernameFromEmail";
 import LoadingScreen from "@/components/Loading";
 
-const EditorPage: React.FC = () => {
+const EditorPage = () => {
   const [content, setContent] = useState<string | null>("");
   const [title, setTitle] = useState<string | null>("");
   const [isLoading, setisLoading] = useState<boolean>(false);
@@ -17,17 +17,14 @@ const EditorPage: React.FC = () => {
   const router = useRouter();
 
   const handleTitle = (title: string | null) => {
-    console.log(title);
     setTitle(title);
   };
 
   const handleContent = (newContent: string | null) => {
-    console.log(newContent);
     setContent(newContent);
   };
 
   const handlePublish = async () => {
-    console.log(content);
     setisLoading(true);
     router.push(`/profile/${extractUsernameFromEmail(data?.user?.email)}`);
     router.refresh();
@@ -43,9 +40,7 @@ const EditorPage: React.FC = () => {
           user_name: extractUsernameFromEmail(data?.user?.email),
         }),
       });
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

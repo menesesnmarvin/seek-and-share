@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 
 async function getContent(username: string) {
   const res = await fetch(
-    `http://localhost:3000/api/profile/user-content/${username}`,
+    `${process.env.NEXTAUTH_URL}/api/profile/user-content/${username}`,
     {
       cache: "no-store",
     },
@@ -21,7 +21,7 @@ async function getContent(username: string) {
 
 async function getUser(email: string) {
   const res = await fetch(
-    `http://localhost:3000/api/profile/user-details/${email}`,
+    `${process.env.NEXTAUTH_URL}/api/profile/user-details/${email}`,
     {
       cache: "no-store",
     },

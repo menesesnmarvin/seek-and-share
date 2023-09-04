@@ -12,7 +12,7 @@ TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
 
 async function getData(id: string) {
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, {
     cache: "no-store",
   });
 
@@ -32,7 +32,6 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 }
 
 const Blog = async ({ params }: { params: { id: string } }) => {
-  console.log(params.id);
   const data = await getData(params.id);
 
   return (

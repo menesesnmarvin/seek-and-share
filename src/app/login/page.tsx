@@ -8,9 +8,6 @@ const LoginPage = () => {
   const { data, status } = useSession();
   const router = useRouter();
 
-  console.log(data);
-  console.log(status);
-
   // if(status === "loading"){
   //    return <h1>...loding</h1>
   // }
@@ -20,7 +17,6 @@ const LoginPage = () => {
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("test");
   };
 
   return (
