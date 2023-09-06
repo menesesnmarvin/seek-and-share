@@ -30,7 +30,7 @@ const EditorPage = () => {
     router.refresh();
 
     try {
-      await fetch("/api/posts", {
+      await fetch(`/api/posts`, {
         method: "POST",
         body: JSON.stringify({
           title,
