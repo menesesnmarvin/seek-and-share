@@ -29,7 +29,7 @@ const Profile = ({ userDetails }: userSession) => {
   }, []);
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative flex-none" ref={dropdownRef}>
       {userDetails?.image ? (
         <button
           className="flex items-center space-x-2"

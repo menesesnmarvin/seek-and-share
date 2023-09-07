@@ -7,13 +7,15 @@ const Navbar = async () => {
 
   return (
     <nav className="m-5 mx-auto mt-8 flex max-w-7xl flex-row justify-between px-4">
-      <Link
-        href="/"
-        className="w-72 font-serif text-2xl font-semibold md:text-3xl"
-      >
-        Seek & Share
-        {/* <Image src={Logo} alt="seek&share" /> */}
-      </Link>
+      <div>
+        <Link
+          href="/"
+          className="w-72 font-serif text-2xl font-semibold md:text-3xl"
+        >
+          Seek & Share
+          {/* <Image src={Logo} alt="seek&share" /> */}
+        </Link>
+      </div>
       <div className="flex items-center gap-4 md:gap-12">
         <Link href="/write" className="flex gap-1">
           <svg
@@ -32,9 +34,7 @@ const Navbar = async () => {
             Sign In
           </Link>
         ) : (
-          <div className="flex-none">
-            <Profile userDetails={session?.user} />
-          </div>
+          <Profile userDetails={session?.user} />
         )}
       </div>
     </nav>
