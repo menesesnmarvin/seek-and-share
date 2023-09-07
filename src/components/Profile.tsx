@@ -40,7 +40,7 @@ const Profile = ({ userDetails }: userSession) => {
             alt="User Avatar"
             width={40}
             height={40}
-            className="h-10 w-10 rounded-full"
+            className="h-8 w-8 rounded-full md:h-10 md:w-10"
           />
           <span className="hidden text-gray-700 md:inline">
             {userDetails?.name}

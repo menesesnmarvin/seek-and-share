@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <>
       <LandingPage />
-      <Posts />
+      <div className="-mt-14 bg-[#F1F1F1] px-4">
+        <Posts />
+      </div>
     </>
   );
 }
