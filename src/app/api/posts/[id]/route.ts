@@ -35,3 +35,26 @@ export const DELETE = async (
     return new NextResponse("Database Error", { status: 500 });
   }
 };
+
+export const PUT = async (
+  _request: any,
+  { params }: { params: { id: string } },
+) => {
+  const { id } = params;
+  const body = await _request.json();
+  console.log(id);
+  try {
+    await connect();
+
+    await PostModel.updateOne(
+      { _id: id },
+      {
+        $set: { status: body.status, title: body.title, content: body.content },
+      },
+    );
+
+    return new NextResponse("Post has been updated", { status: 200 });
+  } catch (err) {
+    return new NextResponse("Database Error", { status: 500 });
+  }
+};

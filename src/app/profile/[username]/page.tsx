@@ -4,9 +4,9 @@ import { articleProps } from "@/model/seekAndShare.model";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-async function getContent(username: string) {
+async function getContent(username: string, status: string) {
   const res = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/profile/user-content/${username}`,
+    `${process.env.NEXTAUTH_URL}/api/profile/user-content/${username}/${status}`,
     {
       cache: "no-store",
     },
@@ -47,7 +47,7 @@ export async function generateMetadata({
 }
 
 const Profile = async ({ params }: { params: { username: string } }) => {
-  const data = await getContent(params.username);
+  const data = await getContent(params.username, "published");
   const user = await getUser(`${params.username}@gmail.com`);
 
   return (
@@ -73,9 +73,14 @@ const Profile = async ({ params }: { params: { username: string } }) => {
               created_by={item.created_by}
               user_name={item.user_name}
               createdAt={item?.createdAt}
+              updatedAt={item?.updatedAt}
               borderBottom="bg-gray-100"
             />
-            <ContentActions id={item._id} username={item.user_name} />
+            <ContentActions
+              id={item._id}
+              username={item.user_name}
+              status={item.status}
+            />
           </div>
         ))}
       </div>

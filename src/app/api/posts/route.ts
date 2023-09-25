@@ -6,7 +6,7 @@ export const GET = async () => {
   try {
     await connect();
 
-    const post = await PostModel.find();
+    const post = await PostModel.find({ status: "published" });
 
     return new NextResponse(JSON.stringify(post), { status: 200 });
   } catch (err) {

@@ -1,20 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MediumEditorComponent from "@/components/MediumEditorComponent";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import extractUsernameFromEmail from "@/lib/extractUsernameFromEmail";
 import LoadingScreen from "@/components/Loading";
+import { editorProps } from "@/model/seekAndShare.model";
 
-const EditorPage = () => {
+const Editor = ({ initTitle, initContent, id }: editorProps) => {
   const [content, setContent] = useState<string | null>("");
   const [title, setTitle] = useState<string | null>("");
   const [isLoading, setisLoading] = useState<boolean>(false);
 
   const isButtonDisabled = title === "" || content === "";
 
-  const { data } = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    setTitle(initTitle);
+    setContent(initContent);
+  }, []);
 
   const handleTitle = (title: string | null) => {
     setTitle(title);
@@ -24,18 +28,15 @@ const EditorPage = () => {
     setContent(newContent);
   };
 
-  const handlePublish = async (status: string) => {
+  const handleSave = async (status: string) => {
     setisLoading(true);
 
     try {
-      await fetch(`/api/posts`, {
-        method: "POST",
+      await fetch(`/api/posts/${id}`, {
+        method: "PUT",
         body: JSON.stringify({
           title,
           content,
-          profileImage: data?.user?.image,
-          created_by: data?.user?.name,
-          user_name: extractUsernameFromEmail(data?.user?.email),
           status: status,
         }),
       });
@@ -51,7 +52,7 @@ const EditorPage = () => {
       <article className="mx-auto mt-20 flex max-w-3xl flex-col gap-8 px-4">
         <div className="flex justify-end gap-2">
           <button
-            onClick={() => handlePublish("published")}
+            onClick={() => handleSave("published")}
             disabled={isButtonDisabled}
             type="button"
             className="mb-4 rounded-full bg-black px-4 py-2 text-sm text-white  disabled:opacity-40 "
@@ -59,7 +60,7 @@ const EditorPage = () => {
             Publish
           </button>
           <button
-            onClick={() => handlePublish("draft")}
+            onClick={() => handleSave("draft")}
             disabled={isButtonDisabled}
             type="button"
             className="mb-4 rounded-full border-[1px] border-black bg-white px-2 text-sm text-black disabled:opacity-40"
@@ -71,17 +72,17 @@ const EditorPage = () => {
           style="text-4xl md:text-5xl font-extrabold"
           placeholder="Title"
           onChange={handleTitle}
-          text={title}
+          text={initTitle}
         />
         <MediumEditorComponent
           style="text-lg md:text-xl"
           placeholder="Tell your story..."
           onChange={handleContent}
-          text={content}
+          text={initContent}
         />
       </article>
     </>
   );
 };
 
-export default EditorPage;
+export default Editor;

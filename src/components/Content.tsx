@@ -19,6 +19,7 @@ const Content = ({
   created_by,
   user_name,
   createdAt,
+  updatedAt,
   borderBottom,
 }: articleProps) => {
   return (
@@ -34,7 +35,7 @@ const Content = ({
         <h1 className="text-sm hover:underline">{created_by}</h1>
         <span>-</span>
         <h1 className="text-sm text-gray-500">
-          {timeAgo.format(new Date(createdAt))}
+          {timeAgo.format(new Date(updatedAt))}
         </h1>
       </Link>
       <Link href={`/blog/${_id}`} className="mt-2">

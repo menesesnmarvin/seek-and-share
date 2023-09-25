@@ -10,6 +10,7 @@ const MediumEditorComponent = ({
   style,
   placeholder,
   onChange,
+  text,
 }: mediumEditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +27,7 @@ const MediumEditorComponent = ({
             hideOnClick: false, // Hide the placeholder on click
           },
         });
-
+        mediumEditor.setContent(text);
         editorRef.current.focus();
       }
     });

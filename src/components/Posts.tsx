@@ -15,6 +15,7 @@ async function getData() {
 
 export default async function Posts() {
   const data = await getData();
+
   return (
     <main className="mx-auto flex max-w-3xl flex-col gap-12 pt-64 md:pt-80">
       {data.map((item: articleProps) => (
@@ -27,6 +28,7 @@ export default async function Posts() {
           created_by={item.created_by}
           user_name={item.user_name}
           createdAt={item?.createdAt}
+          updatedAt={item?.updatedAt}
           borderBottom="bg-white"
         />
       ))}

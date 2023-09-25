@@ -56,9 +56,13 @@ const Profile = ({ userDetails }: userSession) => {
             >
               <li className="px-4 py-2 hover:bg-gray-100">Profile</li>
             </Link>
-
+            <Link href="/me/stories/draft" onClick={toggleDropdown}>
+              <li className="px-4 py-2 hover:bg-gray-100">Stories</li>
+            </Link>
             <Link href="/api/auth/signout">
-              <li className="px-4 py-2 hover:bg-gray-100">Sign Out</li>
+              <li className="border-t-2 border-gray-100 px-4 py-2 hover:bg-gray-100">
+                Sign Out
+              </li>
             </Link>
           </ul>
         </div>
